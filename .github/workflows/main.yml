@@ -34,4 +34,4 @@ jobs:
           key: ${{ secrets.PRIVATE_KEY }}
           port: ${{ secrets.PORT }}
           source: "public/*,docker-compose.yml"
-          target:  "/home/student01/my-gatsby-site/web"
+          target:  "/home/my-gatsby-site/web"

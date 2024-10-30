@@ -1,11 +1,11 @@
-const path = require(`path`)
+const path = require(`path`);
 
 exports.createPages = async ({ graphql, actions }) => {
-  const { createPage } = actions
+  const { createPage } = actions;
 
-
-  const result = await graphql(`
-      {
+  // Fetch articles
+  const resultArticles = await graphql(`
+    {
       Drupal {
         nodeArticles(first: 10) {
           nodes {
@@ -16,61 +16,50 @@ exports.createPages = async ({ graphql, actions }) => {
         }
       }
     }
-    `);
+  `);
 
-    const articles = result.data.Drupal.nodeArticles.nodes;
-    articles.forEach(articledata => {
-      createPage({
-        path: articledata.path,
-        component: path.resolve('src/pages/article/articles/one.js'),
-        component: path.resolve('src/pages/article/articles/two.js'),
-        component: path.resolve('src/pages/article/articles/three.js'),
-        component: path.resolve('src/pages/article/articles/four.js'),
-        component: path.resolve('src/pages/article/articles/five.js'),
-        component: path.resolve('src/pages/article/articles/six.js'),
-        component: path.resolve('src/pages/article/articles/seven.js'),
-        component: path.resolve('src/pages/article/articles/eight.js'),
-        context: {
-          ArticleId: articledata.id,
-        },
-      });
+  const articles = resultArticles.data.Drupal.nodeArticles.nodes;
+  articles.forEach((articleData, index) => {
+    // Use different component based on the index or any other logic if required.
+    const componentPath = path.resolve(`src/pages/article/articles/${(index % 8) + 1}.js`);
+    
+    createPage({
+      path: articleData.path,
+      component: componentPath,
+      context: {
+        ArticleId: articleData.id,
+      },
     });
-};
+  });
 
-exports.createPages = async ({ graphql, actions }) => {
-  const { createPage } = actions
-  const result2 = await graphql(`
-      {
+  // Fetch recipes
+  const resultRecipes = await graphql(`
+    {
       Drupal {
         nodeRecipes(first: 10) {
           edges {
-            node{
+            node {
               id
               title
               path
-            } 
+            }
           }
         }
       }
     }
-    `);
-    const recipes = result2.data.Drupal.nodeRecipes.edges.map(edge => edge.node)
-    recipes.forEach(recipedata => {
-      createPage({
-        path: recipedata.path,
-        component: path.resolve('src/pages/recipe/one.js'),
-        component: path.resolve('src/pages/recipe/two.js'),
-        component: path.resolve('src/pages/recipe/three.js'),
-        component: path.resolve('src/pages/recipe/four.js'),
-        component: path.resolve('src/pages/recipe/five.js'),
-        component: path.resolve('src/pages/recipe/six.js'),
-        component: path.resolve('src/pages/recipe/seven.js'),
-        component: path.resolve('src/pages/recipe/eight.js'),
-        component: path.resolve('src/pages/recipe/nine.js'),
-        component: path.resolve('src/pages/recipe/ten.js'),
-        context: {
-          RecipeId: recipedata.id,
-        },
-      });
+  `);
+
+  const recipes = resultRecipes.data.Drupal.nodeRecipes.edges.map(edge => edge.node);
+  recipes.forEach((recipeData, index) => {
+    // Again, using different component based on the index or any other logic if required.
+    const componentPath = path.resolve(`src/pages/recipe/${(index % 10) + 1}.js`);
+    
+    createPage({
+      path: recipeData.path,
+      component: componentPath,
+      context: {
+        RecipeId: recipeData.id,
+      },
     });
-  };
+  });
+};

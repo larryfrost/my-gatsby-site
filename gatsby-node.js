@@ -59,14 +59,33 @@ exports.createPages = async ({ graphql, actions }) => {
       createPage({
         path: recipedata.path,
         component: path.resolve('src/pages/recipe/one.js'),
+
+        path: recipedata.path,
         component: path.resolve('src/pages/recipe/two.js'),
+
+        path: recipedata.path,
         component: path.resolve('src/pages/recipe/three.js'),
+
+        path: recipedata.path,
         component: path.resolve('src/pages/recipe/four.js'),
+
+        path: recipedata.path,
         component: path.resolve('src/pages/recipe/five.js'),
+
+        path: recipedata.path,
         component: path.resolve('src/pages/recipe/six.js'),
+
+        path: recipedata.path,
         component: path.resolve('src/pages/recipe/seven.js'),
+
+        path: recipedata.path,
         component: path.resolve('src/pages/recipe/eight.js'),
+
+        path: recipedata.path,
         component: path.resolve('src/pages/recipe/nine.js'),
+
+        path: recipedata.path,
+        component: path.resolve('src/pages/recipe/ten.js'),
         context: {
           RecipeId: recipedata.id,
         },

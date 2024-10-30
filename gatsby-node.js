@@ -1,30 +1,76 @@
-/*const path = require(`path`)
-const templatePath = path.resolve(`PATH/TO/recipes.js`)
+const path = require(`path`)
 
 exports.createPages = async ({ graphql, actions }) => {
   const { createPage } = actions
-  const pageTemplate = path.resolve('src/pages/recipes.js')
-  //const articleTemplate = path.resolve('src/pages/article.js')
+
+
   const result = await graphql(`
-  query {
-        Drupal {
-          allnoderecipes(first: 100) {
-            edges {
-              node {
-                id
-              }
-            }
+      {
+      Drupal {
+        nodeArticles(first: 10) {
+          nodes {
+            id
+            title
+            path
           }
         }
       }
-    `)
- result.data.Drupal.nodeRecipes.edges.forEach(({node}) => {
-    createPage({
-      path: node.path.alias,
-      component: pageTemplate,
-      context: {
-        recipe: node
-      },
-    })
-  })
-}*/
+    }
+    `);
+
+    const articles = result.data.Drupal.nodeArticles.nodes;
+    articles.forEach(articledata => {
+      createPage({
+        path: articledata.path,
+        component: path.resolve('src/pages/article/articles/one.js'),
+        component: path.resolve('src/pages/article/articles/two.js'),
+        component: path.resolve('src/pages/article/articles/three.js'),
+        component: path.resolve('src/pages/article/articles/four.js'),
+        component: path.resolve('src/pages/article/articles/five.js'),
+        component: path.resolve('src/pages/article/articles/six.js'),
+        component: path.resolve('src/pages/article/articles/seven.js'),
+        component: path.resolve('src/pages/article/articles/eight.js'),
+        context: {
+          ArticleId: articledata.id,
+        },
+      });
+    });
+};
+
+exports.createPages = async ({ graphql, actions }) => {
+  const { createPage } = actions
+  const result2 = await graphql(`
+      {
+      Drupal {
+        nodeRecipes(first: 10) {
+          edges {
+            node{
+              id
+              title
+              path
+            } 
+          }
+        }
+      }
+    }
+    `);
+    const recipes = result2.data.Drupal.nodeRecipes.edges.map(edge => edge.node)
+    recipes.forEach(recipedata => {
+      createPage({
+        path: recipedata.path,
+        component: path.resolve('src/pages/recipe/one.js'),
+        component: path.resolve('src/pages/recipe/two.js'),
+        component: path.resolve('src/pages/recipe/three.js'),
+        component: path.resolve('src/pages/recipe/four.js'),
+        component: path.resolve('src/pages/recipe/five.js'),
+        component: path.resolve('src/pages/recipe/six.js'),
+        component: path.resolve('src/pages/recipe/seven.js'),
+        component: path.resolve('src/pages/recipe/eight.js'),
+        component: path.resolve('src/pages/recipe/nine.js'),
+        component: path.resolve('src/pages/recipe/ten.js'),
+        context: {
+          RecipeId: recipedata.id,
+        },
+      });
+    });
+  };

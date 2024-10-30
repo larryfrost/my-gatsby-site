@@ -54,23 +54,30 @@ exports.createPages = async ({ graphql, actions }) => {
       }
     }
     `);
-    const recipes = result2.data.Drupal.nodeRecipes.edges.map(edge => edge.node)
-    recipes.forEach(recipedata => {
-      createPage({
-        path: recipedata.path,
-        component: path.resolve('src/pages/recipe/one.js'),
-        component: path.resolve('src/pages/recipe/two.js'),
-        component: path.resolve('src/pages/recipe/three.js'),
-        component: path.resolve('src/pages/recipe/four.js'),
-        component: path.resolve('src/pages/recipe/five.js'),
-        component: path.resolve('src/pages/recipe/six.js'),
-        component: path.resolve('src/pages/recipe/seven.js'),
-        component: path.resolve('src/pages/recipe/eight.js'),
-        component: path.resolve('src/pages/recipe/nine.js'),
-        component: path.resolve('src/pages/recipe/ten.js'),
-        context: {
-          RecipeId: recipedata.id,
-        },
-      });
-    });
-  };
+const recipeComponents = [
+  "one",
+  "two",
+  "three",
+  "four",
+  "five",
+  "six",
+  "seven",
+  "eight",
+  "nine",
+  "ten",
+];
+
+recipes.forEach((recipedata) => {
+  const componentIndex = RecipeId; // e.g., use RecipeId or other data
+  const componentName = recipeComponents[componentIndex];
+  const componentPath = path.resolve(`src/pages/recipe/${componentName}.js`);
+
+  createPage({
+    path: recipedata.path,
+    component: componentPath,
+    context: {
+      RecipeId: recipedata.id,
+    },
+  });
+});
+};

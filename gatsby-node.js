@@ -57,7 +57,7 @@ exports.createPages = async ({ graphql, actions }) => {
     const recipes = result2.data.Drupal.nodeRecipes.edges.map(edge => edge.node)
     recipes.forEach(recipedata => {
       createPage({
-        path: recipedata.path,
+        path: (${__dirname}/one.js),
         component: path.resolve('${__dirname}/one.js'),
         /*component: path.resolve('src/pages/recipe/two.js'),
         component: path.resolve('src/pages/recipe/three.js'),

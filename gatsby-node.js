@@ -58,7 +58,7 @@ exports.createPages = async ({ graphql, actions }) => {
     recipes.forEach(recipedata => {
       createPage({
         path: recipedata.path,
-        component: path.resolve('src/pages/recipe/[recipeId].js'),
+        component: path.resolve('src/pages/recipe/one.js'),
         /*component: path.resolve('src/pages/recipe/two.js'),
         component: path.resolve('src/pages/recipe/three.js'),
         component: path.resolve('src/pages/recipe/four.js'),

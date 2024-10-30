@@ -67,7 +67,7 @@ const recipeComponents = [
   "ten",
 ];
   
-const recipes = result.data.Drupal.nodeRecipes.edges.node;
+const recipes = result2.data.Drupal.nodeRecipes.edges.node;
 recipes.forEach((recipedata) => {
   const componentIndex = RecipeId; // e.g., use RecipeId or other data
   const componentName = recipeComponents[componentIndex];

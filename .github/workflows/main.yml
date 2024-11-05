@@ -32,6 +32,6 @@ jobs:
           host: ${{ secrets.IP }}
           username: ${{ secrets.USER }}
           key: ${{ secrets.PRIVATE_KEY }}
-          port: ${{ secrets.PORT }}
+          port: 22
           source: "public/*,compose.yml"
-          target: "/home/student01/my_gatsby_site/web"
+          target: "/home/${{ secrets.USER }}/my_gatsby_site/web"

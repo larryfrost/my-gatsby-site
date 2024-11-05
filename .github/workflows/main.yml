@@ -45,6 +45,3 @@ jobs:
           port: ${{ secrets.PORT }}
           source: "public/*"
           target: "/home/student01/my_gatsby_site/web"
-          
-      - name: Cleanup Temporary Files # Cleaning up temporary files
-      run: rm -rf /tmp/173971303

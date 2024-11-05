@@ -33,7 +33,6 @@ jobs:
           username: ${{ secrets.USER }}
           key: ${{ secrets.PRIVATE_KEY }}
           port: ${{ secrets.PORT }}
-          rm: true
-          source: "public/*"
-          target: "/home/${{ secrets.USER }}/my_gatsby_site/web"
+          source: "public/*,Docker-compose.yml"
+          target: "/home/student01/my_gatsby_site/web"
           timeout: 30s

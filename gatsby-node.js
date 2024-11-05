@@ -1,4 +1,4 @@
-const path = require(`path`)
+/*const path = require(`path`)
 
 exports.createPages = async ({ graphql, actions }) => {
   const { createPage } = actions
@@ -73,4 +73,4 @@ exports.createPages = async ({ graphql, actions }) => {
         },
       });
     });
-  };
+  };*/

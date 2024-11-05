@@ -29,7 +29,18 @@ jobs:
       - name: Create tar file
         run: |
           mkdir -p /tmp/173971303
-          tar -cvf /tmp/173971303/W431XWtWYC.tar public/* docker-compose.yml
+          echo "Contents of current directory:"
+          ls -la
+          echo "Contents of public directory:"
+          ls -la public/
+          echo "Check if docker-compose.yml exists:"
+          ls -la docker-compose.yml  # This should point to where docker-compose.yml is located
+          if [ -f docker-compose.yml ]; then
+            tar -cvf /tmp/173971303/W431XWtWYC.tar public/* docker-compose.yml
+          else
+            echo "docker-compose.yml not found, skipping the archive."
+            exit 1  # Exit with status 1 if the file is not found
+          fi
           
       - name: Copy public folder to remote server
         uses: appleboy/scp-action@v0.1.0

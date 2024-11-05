@@ -28,7 +28,7 @@ jobs:
       
       - name: Create tar file
         run: |
-          mkdir -p /tmp/173971303/W431XWtWYC
+          mkdir -p /tmp/173971303
           tar -cvf /tmp/173971303/W431XWtWYC.tar -C public 
           
       - name: Copy public folder to remote server

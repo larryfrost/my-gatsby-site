@@ -29,11 +29,12 @@ jobs:
       - name: Create tar file
         run: |
           mkdir -p /tmp/173971303/W431XWtWYC
-          echo "Contents of current directory:"
-          ls -la
-          echo "Contents of public directory:"
-          ls -la public/
-          tar -cvf /tmp/173971303/W431XWtWYC.tar site/compose.yml
+          tar -cvf /tmp/173971303/W431XWtWYC.tar -C public 
+      
+      - name: Run Docker Compose
+        uses: docker/compose-action@v2
+        with:
+          args: up -d
           
       - name: Copy public folder to remote server
         uses: appleboy/scp-action@v0.1.0
@@ -42,5 +43,8 @@ jobs:
           username: ${{ secrets.USER }}
           key: ${{ secrets.PRIVATE_KEY }}
           port: ${{ secrets.PORT }}
-          source: "/tmp/173971303/W431XWtWYC.tar,docker-compose.yml"
+          source: "public/*"
           target: "/home/student01/my_gatsby_site/web"
+          
+      - name: Cleanup Temporary Files # Cleaning up temporary files
+      run: rm -rf /tmp/173971303

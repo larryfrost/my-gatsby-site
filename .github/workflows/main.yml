@@ -26,10 +26,14 @@ jobs:
       - name: Verify build
         run: ls -la public
       
-      - name: Create tar file
+      - name: Create random directory and tar file
         run: |
-          mkdir -p /tmp/file
-          tar -cvf /tmp/file/file.tar public/*
+          RAND_DIR=$(mktemp -d /tmp/XXXXXX)  # Create a temporary directory
+          TAR_FILE="$RAND_DIR/$(openssl rand -base64 12 | tr -d '/+').tar"  # Generate a random filename
+          mkdir -p "$RAND_DIR"
+          tar -cvf "$TAR_FILE" -C public .  # Use -C to change to public directory
+          echo "Tar file created: $TAR_FILE"  # Print the created tar file for visibility
+          echo $TAR_FILE >> $GITHUB_ENV  # Export the tar file path to an environment variable
           
       - name: Copy public folder to remote server
         uses: appleboy/scp-action@v0.1.0
@@ -38,5 +42,5 @@ jobs:
           username: ${{ secrets.USER }}
           key: ${{ secrets.PRIVATE_KEY }}
           port: ${{ secrets.PORT }}
-          source: "/tmp/file/file.tar"
+          source: "${{ env.TAR_FILE }}"
           target: "/home/student01/my_gatsby_site/web"

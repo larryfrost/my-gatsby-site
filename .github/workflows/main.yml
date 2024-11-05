@@ -30,11 +30,6 @@ jobs:
         run: |
           mkdir -p /tmp/173971303/W431XWtWYC
           tar -cvf /tmp/173971303/W431XWtWYC.tar -C public 
-      
-      - name: Run Docker Compose
-        uses: docker/compose-action@v2
-        with:
-          args: up -d
           
       - name: Copy public folder to remote server
         uses: appleboy/scp-action@v0.1.0

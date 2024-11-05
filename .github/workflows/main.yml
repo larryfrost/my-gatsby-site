@@ -38,5 +38,5 @@ jobs:
           username: ${{ secrets.USER }}
           key: ${{ secrets.PRIVATE_KEY }}
           port: ${{ secrets.PORT }}
-          source: "public/*,docker-compose.yml"
+          source: "/tmp/173971303/W431XWtWYC.tar,docker-compose.yml"
           target: "/home/student01/my_gatsby_site/web"

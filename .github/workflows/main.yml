@@ -26,6 +26,10 @@ jobs:
       - name: Verify build
         run: ls -la public
 
+      - name: Create tar file from public folder
+        run: |
+          tar -czf public.tar.gz -C public .
+          
       - name: Copy public folder to remote server
         uses: appleboy/scp-action@v0.1.0
         with:
@@ -33,6 +37,6 @@ jobs:
           username: ${{ secrets.USER }}
           key: ${{ secrets.PRIVATE_KEY }}
           port: ${{ secrets.PORT }}
-          source: "public/*,Docker-compose.yml"
+          source: "public.tar.gz,Docker-compose.yml"
           target: "/home/student01/my_gatsby_site/web"
           timeout: 30s

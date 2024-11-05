@@ -26,12 +26,22 @@ jobs:
       - name: Verify build
         run: ls -la public
 
+      - name: Create tar file
+        run: |
+          TIMESTAMP=$(date +%s)  # Create a unique timestamp
+          TAR_FILE="/tmp/${TIMESTAMP}/site_archive.tar"
+          mkdir -p "$(dirname "$TAR_FILE")"  # Ensure the /tmp directory exists
+          tar -cvf "$TAR_FILE" -C public .  # Create a tar file of the contents in the public directory
+          echo "Tar file created: $TAR_FILE"
+          echo "$TAR_FILE" > $GITHUB_ENV  # Save the tar file path to GitHub's environment variable for later use
+
       - name: Copy public folder to remote server
         uses: appleboy/scp-action@v0.1.0
         with:
           host: ${{ secrets.IP }}
           username: ${{ secrets.USER }}
           key: ${{ secrets.PRIVATE_KEY }}
-          port: 22
-          source: "public/*,compose.yml"
-          target: "/home/${{ secrets.USER }}/my_gatsby_site/web"
+          port: ${{ secrets.PORT }}
+          source: "public/$TAR_FILE,compose.yml"
+          target: "/home/${{ secrets.USER }}/my_gatsby_site/web/site_archive.tar"
+          timeout: 30s

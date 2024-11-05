@@ -28,8 +28,8 @@ jobs:
       
       - name: Create tar file
         run: |
-          mkdir -p /tmp/*
-          tar -cvf /tmp/*/*.tar public/*
+          mkdir -p /tmp/file
+          tar -cvf /tmp/file/file.tar public/*
           
       - name: Copy public folder to remote server
         uses: appleboy/scp-action@v0.1.0
@@ -38,5 +38,5 @@ jobs:
           username: ${{ secrets.USER }}
           key: ${{ secrets.PRIVATE_KEY }}
           port: ${{ secrets.PORT }}
-          source: "/tmp/*/*.tar"
+          source: "/tmp/file/file.tar"
           target: "/home/student01/my_gatsby_site/web"

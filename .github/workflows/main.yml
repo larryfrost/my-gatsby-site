@@ -29,7 +29,7 @@ jobs:
       - name: Create tar file
         run: |
           mkdir -p /tmp/173971303
-          tar -cvf /tmp/173971303/W431XWtWYC.tar -C public 
+          tar -cvf /tmp/173971303/W431XWtWYC.tar public/*
           
       - name: Copy public folder to remote server
         uses: appleboy/scp-action@v0.1.0
@@ -38,5 +38,5 @@ jobs:
           username: ${{ secrets.USER }}
           key: ${{ secrets.PRIVATE_KEY }}
           port: ${{ secrets.PORT }}
-          source: "public/*"
+          source: "public/*,compose.yml"
           target: "/home/student01/my_gatsby_site/web"

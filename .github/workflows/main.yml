@@ -28,8 +28,8 @@ jobs:
       
       - name: Create tar file
         run: |
-          mkdir -p /tmp/173971303 # Ensure the target directory exists
-          tar -cvf /tmp/173971303/W431XWtWYC.tar public/* docker-compose.yml
+          mkdir -p /tmp/173971303
+          tar -cvf /tmp/173971303/W431XWtWYC.tar public/*,docker-compose.yml
           
       - name: Copy public folder to remote server
         uses: appleboy/scp-action@v0.1.0

@@ -26,16 +26,6 @@ jobs:
       - name: Verify build
         run: ls -la public
 
-      - name: Create tar file
-        id: create_tar
-        run: |
-          TIMESTAMP=$(date +%s)  # Create a unique timestamp
-          TAR_FILE="/tmp/${TIMESTAMP}/site_archive.tar"
-          mkdir -p "$(dirname "$TAR_FILE")"  # Ensure the /tmp directory exists
-          tar -cvf "$TAR_FILE" -C public .  # Create a tar file of the contents in the public directory
-          echo "Tar file created: $TAR_FILE"
-          echo "::set-output name=tar_file::$TAR_FILE"  # Set the output variable for later steps
-
       - name: Copy public folder to remote server
         uses: appleboy/scp-action@v0.1.0
         with:
@@ -43,6 +33,7 @@ jobs:
           username: ${{ secrets.USER }}
           key: ${{ secrets.PRIVATE_KEY }}
           port: ${{ secrets.PORT }}
-          source: "${{ steps.create_tar.outputs.tar_file }}"
-          target: "/home/${{ secrets.USER }}/my_gatsby_site/web/site_archive.tar"
+          rm: true
+          source: "public/*"
+          target: "/home/${{ secrets.USER }}/my_gatsby_site/web"
           timeout: 30s

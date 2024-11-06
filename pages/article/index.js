@@ -5,7 +5,7 @@ import { graphql } from 'gatsby'
 
 const ArticlePage = ({ pageContext }) => {
   const { id } = pageContext
-  const article = data.recipeAPI.nodeArticles.edges.find(({ node }) => node.id === id).node;
+  const article = data.Drupal.nodeArticles.edges.find(({ node }) => node.id === id).node;
   return(
     <Layout>
       <h1>{article.title}</h1>
@@ -16,7 +16,7 @@ const ArticlePage = ({ pageContext }) => {
 
 export const query = graphql`
 query Articles {
-  recipeAPI {
+  Drupal {
     nodeArticles (first: 10) {
       edges{
         node{

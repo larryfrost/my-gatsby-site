@@ -1,5 +1,4 @@
 const path = require(`path`)
-const fs = require('fs');
 
 exports.createPages = async ({ graphql, actions }) => {
   const { createPage } = actions
@@ -18,28 +17,16 @@ exports.createPages = async ({ graphql, actions }) => {
     }
     `);
 
-    const articleTemplates = [
-        path.resolve(`src/pages/article/articles/one.js`),
-        path.resolve(`src/pages/article/articles/two.js`),
-        path.resolve(`src/pages/article/articles/three.js`),
-        path.resolve(`src/pages/article/articles/four.js`),
-        path.resolve(`src/pages/article/articles/five.js`),
-        path.resolve(`src/pages/article/articles/six.js`),
-        path.resolve(`src/pages/article/articles/seven.js`),
-        path.resolve(`src/pages/article/articles/eight.js`)
-    ];
-    const articles = result.data.Drupal.nodeArticles.nodes;
-  
-    articles.forEach(articledata => {
-      const articlePath = `/article/articles/${articledata.id}`;
-      createPage({
-        path: articlePath,
-        component: require.resolve(articleTemplates[0]),
-        context:{
-         ArticleId: articledata.id,
-        }
-      });
+    const articleTemplate = path.resolve(`src/article/index.js`)
+  result.data.Drupal.nodeArticles.edges.forEach(({node}) => {
+    createPage({
+      path: `/article/${node.title}`,
+      component: articleTemplate,
+      context: {
+        article: node,
+      },
     });
+  });
   
   const result2 = await graphql(`
       {
@@ -49,37 +36,21 @@ exports.createPages = async ({ graphql, actions }) => {
             node{
               id
               title
-              slug
             } 
           }
         }
       }
     }
     `);
-
-
-  const recipeTemplates = [
-        path.resolve('src/pages/recipe/one.js'),
-        path.resolve('src/pages/recipe/two.js'),
-        path.resolve('src/pages/recipe/three.js'),
-        path.resolve('src/pages/recipe/four.js'),
-        path.resolve('src/pages/recipe/five.js'),
-        path.resolve('src/pages/recipe/six.js'),
-        path.resolve('src/pages/recipe/seven.js'),
-        path.resolve('src/pages/recipe/eight.js'),
-        path.resolve('src/pages/recipe/nine.js'),
-        path.resolve('src/pages/recipe/ten.js')
-    ];
     
-    const recipes = result2.data.Drupal.nodeRecipes.edges.map(edge => edge.node)
-    recipes.forEach(recipedata => {
-      const recipePath = `/recipe/${recipedata.id}`;
-      createPage({
-        path: recipePath,
-        component: require.resolve(recipeTemplates[0]),
-        context:{
-         RecipeId: recipedata.id,
-        }
-      });
+  const recipePostTemplate = path.resolve(`src/recipe/index.js`)
+  result.data.Drupal.nodeRecipes.edges.forEach(({node}) => {
+    createPage({
+      path: `/recipe/${node.title}`,
+      component: recipePostTemplate,
+      context: {
+        recipe: node,
+      },
     });
+  });
   };

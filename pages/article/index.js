@@ -1,21 +1,32 @@
 import * as React from 'react'
-import Layout from '../../components/layout'
-import Seo from '../../components/seo'
+import Layout from '../../../components/layout'
+import Seo from '../../../components/seo'
+import { graphql } from 'gatsby'
 
-const ArticlePage = ({ data }) => {
+const ArticlePage = ({ pageContext }) => {
+  const { article } = pageContext
   return(
     <Layout>
-       <article><h2><a href="/article/articles/one">Give it a go and grow your own herbs</a></h2></article>
-       <article><h2><a href="/article/articles/two">Dairy-free and delicious milk chocolate</a></h2></article>
-       <article><h2><a href="/article/articles/three"> The real deal for supermarket savvy shopping</a></h2></article>
-       <article><h2><a href="/article/articles/four">The Umami guide to our favorite mushrooms</a></h2></article>
-       <article><h2><a href="/article/articles/five">Let's hear it for carrots</a></h2></article>
-       <article><h2><a href="/article/articles/six">Baking mishaps - our troubleshooting tips</a></h2></article>
-       <article><h2><a href="/article/articles/seven">Skip the spirits with delicious mocktails</a></h2></article>
-       <article><h2><a href="/article/articles/eight">Give your oatmeal the ultimate makover</a></h2></article>
+      <h1>{article.title}</h1>
+      <div dangerouslySetInnerHTML={{ __html: article.body.processed }}></div>
     </Layout>
   );  
 };
+
+export const query = graphql`
+query Articles {
+  Drupal {
+    nodeArticles (first: 10) {
+      nodes{
+        id
+        title
+        body {
+          processed
+        }
+      }
+    }
+  }
+}`;
 
 export const Head = () => <Seo title="Article Page" />
 

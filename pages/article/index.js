@@ -4,7 +4,8 @@ import Seo from '../../../components/seo'
 import { graphql } from 'gatsby'
 
 const ArticlePage = ({ pageContext }) => {
-  const { article } = pageContext
+  const { id } = pageContext
+  const article = data.nodeArticles.edges.find(({ node }) => node.id === id).node;
   return(
     <Layout>
       <h1>{article.title}</h1>

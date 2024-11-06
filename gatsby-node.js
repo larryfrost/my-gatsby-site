@@ -17,7 +17,7 @@ exports.createPages = async ({ graphql, actions }) => {
     }
     `);
 
-    const articleTemplate = path.resolve(`src/article/index.js`)
+    const articleTemplate = path.resolve(`src/pages/article/index.js`)
   result.data.Drupal.nodeArticles.edges.forEach(({node}) => {
     createPage({
       path: `/article/${node.title}`,
@@ -43,7 +43,7 @@ exports.createPages = async ({ graphql, actions }) => {
     }
     `);
     
-  const recipePostTemplate = path.resolve(`src/recipe/index.js`)
+  const recipePostTemplate = path.resolve(`src/pages/recipe/index.js`)
   result.data.Drupal.nodeRecipes.edges.forEach(({node}) => {
     createPage({
       path: `/recipe/${node.title}`,

@@ -3,14 +3,12 @@ import Layout from '../../../components/layout'
 import Seo from '../../../components/seo'
 import { graphql } from 'gatsby'
 
-const ArticlePage = ({ data }) => {
-  const articles = data.Drupal.nodeArticles.nodes;
-  const filteredArticle = articles.find(article => article.title === "Give it a go and grow your own herbs"); 
-
+const ArticlePage = ({ pageContext }) => {
+  const { article } = pageContext
   return(
     <Layout>
-      <h1>{filteredArticle.title}</h1>
-      <div dangerouslySetInnerHTML={{ __html: filteredArticle.body.processed }}></div>
+      <h1>{article.title}</h1>
+      <div dangerouslySetInnerHTML={{ __html: article.body.processed }}></div>
     </Layout>
   );  
 };

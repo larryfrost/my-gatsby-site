@@ -3,6 +3,8 @@ import Layout from '../../components/layout'
 import Seo from '../../components/seo'
 
 const ArticlePage = ({ data }) => {
+  const { id } = pageContext
+  const article = data.Drupal.nodeArticles.edges.find(({ node }) => node.id === id).node;
   return(
     <Layout>
        <article><h2><a href="/recipe/one">SUUPRDEEP mediterranean quiche</a></h2></article>

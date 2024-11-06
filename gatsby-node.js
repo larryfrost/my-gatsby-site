@@ -32,7 +32,7 @@ exports.createPages = async ({ graphql, actions }) => {
     const articles = result.data.Drupal.nodeArticles.nodes;
   
     articles.forEach(articledata => {
-      const articlePath = `/article/${articledata.path}`;
+      const articlePath = `/article/articles/${articledata.path}`;
       createPage({
         path: articlePath,
         component: require.resolve(articleTemplates[0]),

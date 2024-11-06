@@ -8,16 +8,19 @@ exports.createPages = async ({ graphql, actions }) => {
       {
       Drupal {
         nodeArticles(first: 10) {
-          nodes {
-            id
-            title
+          edges{
+            node{
+              id
+              title
+              path
+            }
           }
         }
       }
     }
     `);
   const articleTemplate = path.resolve(`src/pages/article/index.js`);
-  result.data.Drupal.nodeArticles.nodes.forEach(node => {
+  result.data.Drupal.nodeArticles.edges.forEach(({ node }) => {
     createPage({
       path: `/en/articles/${node.title.toLowerCase().replace(/\s+/g, '-')}`,
       component: articleTemplate,
@@ -35,6 +38,7 @@ exports.createPages = async ({ graphql, actions }) => {
             node{
               id
               title
+              path
             } 
           }
         }

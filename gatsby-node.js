@@ -30,12 +30,10 @@ exports.createPages = async ({ graphql, actions }) => {
     articles.forEach(articledata => {
       createPage({
         path: articleTemone,
-      });
+        },
+      );
     });
-};
-
-exports.createPages = async ({ graphql, actions }) => {
-  const { createPage } = actions
+  
   const result2 = await graphql(`
       {
       Drupal {
@@ -52,7 +50,6 @@ exports.createPages = async ({ graphql, actions }) => {
     }
     `);
 
-
     const recipeTemone =  path.resolve('src/pages/recipe/one.js')
     const recipeTemtwo =  path.resolve('src/pages/recipe/two.js')
     const recipeTemthree =  path.resolve('src/pages/recipe/three.js')
@@ -68,6 +65,6 @@ exports.createPages = async ({ graphql, actions }) => {
       createPage({
         path: recipeTemone,
         },
-      });
+      );
     });
   };

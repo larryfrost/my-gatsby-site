@@ -12,7 +12,7 @@ exports.createPages = async ({ graphql, actions }) => {
           nodes {
             id
             title
-            path
+            slug
           }
         }
       }
@@ -32,7 +32,7 @@ exports.createPages = async ({ graphql, actions }) => {
     const articles = result.data.Drupal.nodeArticles.nodes;
   
     articles.forEach(articledata => {
-      const articlePath = `/article/articles/${articledata.path}`;
+      const articlePath = `/article/articles/${articledata.slug || articledata.id}`;
       createPage({
         path: articlePath,
         component: require.resolve(articleTemplates[0]),
@@ -50,7 +50,7 @@ exports.createPages = async ({ graphql, actions }) => {
             node{
               id
               title
-              path
+              slug
             } 
           }
         }
@@ -74,7 +74,7 @@ exports.createPages = async ({ graphql, actions }) => {
     
     const recipes = result2.data.Drupal.nodeRecipes.edges.map(edge => edge.node)
     recipes.forEach(recipedata => {
-      const recipePath = `/recipe/${recipedata.path}`;
+      const recipePath = `/recipe/${recipedata.slug || recipedata.id}`;
       createPage({
         path: recipePath,
         component: require.resolve(recipeTemplates[0]),

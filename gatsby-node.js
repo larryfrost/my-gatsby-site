@@ -33,7 +33,7 @@ exports.createPages = async ({ graphql, actions }) => {
         component: require.resolve('./src/pages/article/articles/one.js'),
         context:{
          ArticleId: articledata.id,
-        };
+        }
         },
       );
     });
@@ -71,7 +71,7 @@ exports.createPages = async ({ graphql, actions }) => {
         component: require.resolve('./src/pages/recipe/one.js'),
         context:{
          RecipeId: recipedata.id,
-        };
+        }
         },
       );
     });

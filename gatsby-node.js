@@ -20,13 +20,13 @@ exports.createPages = async ({ graphql, actions }) => {
 
     const articles = result.data.Drupal.nodeArticles.nodes;
     const articleTemone = path.resolve('src/pages/article/articles/one.js'),
-    const articleTemtwo = path.resolve('src/pages/article/articles/two.js'),
+    /*const articleTemtwo = path.resolve('src/pages/article/articles/two.js'),
     const articleTemthree = path.resolve('src/pages/article/articles/three.js'),
     const articleTemfour = path.resolve('src/pages/article/articles/four.js'),
     const articleTemfive = path.resolve('src/pages/article/articles/five.js'),
     const articleTemsix = path.resolve('src/pages/article/articles/six.js'),
     const articleTemseven = path.resolve('src/pages/article/articles/seven.js'),
-    const articleTemeight = path.resolve('src/pages/article/articles/eight.js'),
+    const articleTemeight = path.resolve('src/pages/article/articles/eight.js'),*/
       
     articles.forEach(articledata => {
       createPage({
@@ -36,7 +36,7 @@ exports.createPages = async ({ graphql, actions }) => {
           ArticleId: articledata.id,
         },
 
-        component: articleTemtwo,
+        /*component: articleTemtwo,
         context: {
           ArticleId: articledata.id,
         },
@@ -69,7 +69,7 @@ exports.createPages = async ({ graphql, actions }) => {
         component: articleTemeight,
         context: {
           ArticleId: articledata.id,
-        },
+        },*/
       });
     });
 };
@@ -93,7 +93,7 @@ exports.createPages = async ({ graphql, actions }) => {
     `);
     const recipes = result2.data.Drupal.nodeRecipes.edges.map(edge => edge.node)
     const recipeTemone = path.resolve('src/pages/recipe/one.js'),
-    const recipeTemtwo = path.resolve('src/pages/recipe/two.js'),
+    /*const recipeTemtwo = path.resolve('src/pages/recipe/two.js'),
     const recipeTemthree = path.resolve('src/pages/recipe/three.js'),
     const recipeTemfour = path.resolve('src/pages/recipe/four.js'),
     const recipeTemfive = path.resolve('src/pages/recipe/five.js'),
@@ -101,7 +101,7 @@ exports.createPages = async ({ graphql, actions }) => {
     const recipeTemseven = path.resolve('src/pages/recipe/seven.js'),
     const recipeTemeight = path.resolve('src/pages/recipe/eight.js'),
     const recipeTemnine = path.resolve('src/pages/recipe/nine.js'),
-    const recipeTemten = path.resolve('src/pages/recipe/ten.js'),
+    const recipeTemten = path.resolve('src/pages/recipe/ten.js'),*/
     recipes.forEach(recipedata => {
       createPage({
         path: recipedata.path,
@@ -111,7 +111,7 @@ exports.createPages = async ({ graphql, actions }) => {
           id: recipedata.id,
         },
 
-        component: recipeTemtwo,
+        /*component: recipeTemtwo,
         context: {
           title: recipedata.title,
           id: recipedata.id,
@@ -163,7 +163,7 @@ exports.createPages = async ({ graphql, actions }) => {
         context: {
           title: recipedata.title,
           id: recipedata.id,
-        },
+        },*/
       });
     });
   };

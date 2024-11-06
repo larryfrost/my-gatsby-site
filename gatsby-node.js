@@ -28,8 +28,9 @@ exports.createPages = async ({ graphql, actions }) => {
     const articleTemeight =  path.resolve('src/pages/article/articles/eight.js')
     const articles = result.data.Drupal.nodeArticles.nodes;
     articles.forEach(articledata => {
+      const articlePath = `/article/${articledata.path}`;
       createPage({
-        path: articleTemone,
+        path: articlePath,
         component: require.resolve(articleTemone),
         context:{
          ArticleId: articledata.id,
@@ -66,8 +67,9 @@ exports.createPages = async ({ graphql, actions }) => {
     const recipeTemten =  path.resolve('src/pages/recipe/ten.js')
     const recipes = result2.data.Drupal.nodeRecipes.edges.map(edge => edge.node)
     recipes.forEach(recipedata => {
+      const recipePath = `/article/${articledata.path}`;
       createPage({
-        path: recipeTemone,
+        path: recipePath,
         component: require.resolve(recipeTemone),
         context:{
          RecipeId: recipedata.id,

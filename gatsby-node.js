@@ -17,8 +17,7 @@ exports.createPages = async ({ graphql, actions }) => {
       }
     }
     `);
-
-    const articles = result.data.Drupal.nodeArticles.nodes;
+  
     const articleTemone = path.resolve('src/pages/article/articles/one.js'),
     /*const articleTemtwo = path.resolve('src/pages/article/articles/two.js'),
     const articleTemthree = path.resolve('src/pages/article/articles/three.js'),
@@ -28,7 +27,7 @@ exports.createPages = async ({ graphql, actions }) => {
     const articleTemseven = path.resolve('src/pages/article/articles/seven.js'),
     const articleTemeight = path.resolve('src/pages/article/articles/eight.js'),*/
       
-    articles.forEach(articledata => {
+    result.data.Drupal.nodeArticles.nodes.forEach(articledata => {
       createPage({
         path: articledata.path,
         component: articleTemone,
@@ -91,7 +90,7 @@ exports.createPages = async ({ graphql, actions }) => {
       }
     }
     `);
-    const recipes = result2.data.Drupal.nodeRecipes.edges.map(edge => edge.node)
+  
     const recipeTemone = path.resolve('src/pages/recipe/one.js'),
     /*const recipeTemtwo = path.resolve('src/pages/recipe/two.js'),
     const recipeTemthree = path.resolve('src/pages/recipe/three.js'),
@@ -102,7 +101,7 @@ exports.createPages = async ({ graphql, actions }) => {
     const recipeTemeight = path.resolve('src/pages/recipe/eight.js'),
     const recipeTemnine = path.resolve('src/pages/recipe/nine.js'),
     const recipeTemten = path.resolve('src/pages/recipe/ten.js'),*/
-    recipes.forEach(recipedata => {
+    result2.data.Drupal.nodeRecipes.edges.map(edge => edge.node).forEach(recipedata => {
       createPage({
         path: recipedata.path,
         component: recipeTemone,

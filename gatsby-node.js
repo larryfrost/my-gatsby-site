@@ -32,7 +32,7 @@ exports.createPages = async ({ graphql, actions }) => {
         path: articleTemone,
         component: require.resolve('./src/pages/article/articles/one.js'),
         context:{
-         ArticleId: articledata.id;
+         ArticleId: articledata.id,
         };
         },
       );
@@ -70,7 +70,7 @@ exports.createPages = async ({ graphql, actions }) => {
         path: recipeTemone,
         component: require.resolve('./src/pages/recipe/one.js'),
         context:{
-         RecipeId: recipedata.id;
+         RecipeId: recipedata.id,
         };
         },
       );

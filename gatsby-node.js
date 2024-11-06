@@ -59,15 +59,15 @@ exports.createPages = async ({ graphql, actions }) => {
 
 
   const recipeTemplates = [
-        path.resolve('src/pages/recipe/one.js')
-        path.resolve('src/pages/recipe/two.js')
-        path.resolve('src/pages/recipe/three.js')
-        path.resolve('src/pages/recipe/four.js')
-        path.resolve('src/pages/recipe/five.js')
-        path.resolve('src/pages/recipe/six.js')
-        path.resolve('src/pages/recipe/seven.js')
-        path.resolve('src/pages/recipe/eight.js')
-        path.resolve('src/pages/recipe/nine.js')
+        path.resolve('src/pages/recipe/one.js'),
+        path.resolve('src/pages/recipe/two.js'),
+        path.resolve('src/pages/recipe/three.js'),
+        path.resolve('src/pages/recipe/four.js'),
+        path.resolve('src/pages/recipe/five.js'),
+        path.resolve('src/pages/recipe/six.js'),
+        path.resolve('src/pages/recipe/seven.js'),
+        path.resolve('src/pages/recipe/eight.js'),
+        path.resolve('src/pages/recipe/nine.js'),
         path.resolve('src/pages/recipe/ten.js')
     ];
     

@@ -4,7 +4,7 @@ import Seo from '../../components/seo';
 import { graphql } from 'gatsby';
 
 const RecipePage = ({ pageContext }) => {
-  const { recipe } = pageContext
+  const { id } = pageContext
   return (
     <Layout>
       <h1>{recipe.title}</h1>

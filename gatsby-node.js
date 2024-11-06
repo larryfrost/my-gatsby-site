@@ -32,7 +32,7 @@ exports.createPages = async ({ graphql, actions }) => {
         path: articleTemone,
         component: articleTemone,
         context: {
-          ArticleId: articledata.id,
+          ArticleId: articleTemone.id,
         },
       });
     });
@@ -73,7 +73,7 @@ exports.createPages = async ({ graphql, actions }) => {
         path: recipeTemone,
         component: recipeTemone,
         context: {
-          RecipeId: recipedata.id,
+          RecipeId: recipeTemone.id,
         },
       });
     });

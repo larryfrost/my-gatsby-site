@@ -21,26 +21,10 @@ jobs:
         run: npm install -g gatsby-cli
 
       - name: Build
-        env:
-              SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
         run: gatsby build --prefix-paths
-          mkdir -p ~/.ssh
-          echo "$PRIVATE_KEY" > ~/.ssh/id_rsa_github
-          chmod 600 ~/.ssh/id_rsa_github
-          rsync -avz --delete -e "ssh -o StrictHostKeyChecking=no" ./public/ student01@student01.wendell.tech:html
           
       - name: Verify build
         run: ls -la public
-
-      - name: Run Docker Compose on SSH server
-        env:
-          SSH_PRIVATE_KEY: ${{ secrets.PRIVATE_KEY }}
-        run: |
-          ssh -o StrictHostKeyChecking=no student01@student01.wendell.tech << 'EOF'
-          cd html
-          docker compose down
-          docker compose up -d --build
-          EOF
           
       - name: Copy public folder to remote server
         uses: appleboy/scp-action@v0.1.0

@@ -30,7 +30,7 @@ exports.createPages = async ({ graphql, actions }) => {
     articles.forEach(articledata => {
       createPage({
         path: articleTemone,
-        component: require.resolve('./src/pages/article/articles/one.js'),
+        component: require.resolve(articleTemone),
         context:{
          ArticleId: articledata.id,
         }
@@ -68,7 +68,7 @@ exports.createPages = async ({ graphql, actions }) => {
     recipes.forEach(recipedata => {
       createPage({
         path: recipeTemone,
-        component: require.resolve('./src/pages/recipe/one.js'),
+        component: require.resolve(recipeTemone),
         context:{
          RecipeId: recipedata.id,
         }

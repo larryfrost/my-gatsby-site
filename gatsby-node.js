@@ -18,7 +18,7 @@ exports.createPages = async ({ graphql, actions }) => {
     `);
 
     const articleTemplate = path.resolve(`src/pages/article/index.js`)
-  result.data.Drupal.nodeArticles.edges.forEach(({node}) => {
+  result.data.Drupal.nodeArticles.forEach(({node}) => {
     createPage({
       path: `/article/${node.title}`,
       component: articleTemplate,

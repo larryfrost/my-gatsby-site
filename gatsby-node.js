@@ -2,14 +2,26 @@ const path = require('path');
 
 exports.createPages = async ({ graphql, actions }) => {
   const { createPage } = actions;
+  const recipeTemplate = path.resolve('src/templates/recipe.js');
+  const articleTemplate = path.resolve('src/templates/article.js');
 
   const result = await graphql(`
     {
-      Drupal {
-        nodeArticles(first: 10) {
+      recipeAPI {
+        nodeRecipes(first: 100) {
           edges {
             node {
               id
+              path
+              title
+            }
+          }
+        }
+        nodeArticles(first: 100) {
+          edges {
+            node {
+              id
+              path
               title
             }
           }
@@ -18,61 +30,31 @@ exports.createPages = async ({ graphql, actions }) => {
     }
   `);
 
-  const articleTemplate = path.resolve(`src/pages/article/index.js`);
-
   if (result.errors) {
-    console.error("Error in GraphQL query:", result.errors);
+    console.error(result.errors);
     return;
   }
 
-  result.data.Drupal.nodeArticles.edges.forEach(({ node }) => {
-    if (node) {
-      createPage({
-        path: `/en/articles/${node.title.toLowerCase().replace(/\s+/g, '-')}`,
-        component: articleTemplate,
-        context: {
-          id: node.id,
-        },
-      });
-    } else {
-      console.warn('Node is undefined'); // for debugging
-    }
+  const recipes = result.data.recipeAPI.nodeRecipes.edges;
+  const articles = result.data.recipeAPI.nodeArticles.edges;
+
+  recipes.forEach(({ node }) => {
+    createPage({
+      path: `/en/recipes/${node.title.toLowerCase().replace(/\s+/g, '-')}`,
+      component: recipeTemplate,
+      context: {
+        id: node.id,
+      },
+    });
   });
 
-  // Similar code for recipes...
-  const result2 = await graphql(`
-    {
-      Drupal {
-        nodeRecipes(first: 10) {
-          edges {
-            node{
-              id
-              title
-            } 
-          }
-        }
-      }
-    }
-  `);
-
-  const recipePostTemplate = path.resolve(`src/pages/recipe/index.js`);
-
-  if (result2.errors) {
-    console.error("Error in GraphQL query:", result2.errors);
-    return;
-  }
-
-  result2.data.Drupal.nodeRecipes.edges.forEach(({ node }) => {
-    if (node) {
-      createPage({
-        path: `/en/recipes/${node.title.toLowerCase().replace(/\s+/g, '-')}`,
-        component: recipePostTemplate,
-        context: {
-          id: node.id,
-        },
-      });
-    } else {
-      console.warn('Node is undefined'); // for debugging
-    }
+  articles.forEach(({ node }) => {
+    createPage({
+      path: `/en/articles/${node.title.toLowerCase().replace(/\s+/g, '-')}`,
+      component: articleTemplate,
+      context: {
+        id: node.id,
+      },
+    });
   });
 };

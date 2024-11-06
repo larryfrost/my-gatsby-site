@@ -30,10 +30,6 @@ exports.createPages = async ({ graphql, actions }) => {
     articles.forEach(articledata => {
       createPage({
         path: articleTemone,
-        component: articleTemone,
-        context: {
-          ArticleId: articleTemone.id,
-        },
       });
     });
 };
@@ -71,9 +67,6 @@ exports.createPages = async ({ graphql, actions }) => {
     recipes.forEach(recipedata => {
       createPage({
         path: recipeTemone,
-        component: recipeTemone,
-        context: {
-          RecipeId: recipeTemone.id,
         },
       });
     });

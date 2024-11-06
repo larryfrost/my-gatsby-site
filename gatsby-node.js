@@ -19,18 +19,14 @@ exports.createPages = async ({ graphql, actions }) => {
     `);
 
     const articles = result.data.Drupal.nodeArticles.nodes;
-    const article = path.resolve(`src/pages/articles/index.js`)
+    conat articleTem = component: path.resolve('src/pages/article/articles/index.js'),
     articles.forEach(articledata => {
       createPage({
         path: articledata.path,
-        const articlePath = `${element.node.path}`.slice(3);
-        createPage({
-            path: articlePath,
-            component: article,
-            context: {
-              title: element.node.title,
-              id: element.node.id,
-              body: element.node.body.processed,
+        component: articleTem,
+        context: {
+          ArticleId: articledata.id,
+        },
       });
     });
 };
@@ -53,16 +49,15 @@ exports.createPages = async ({ graphql, actions }) => {
     }
     `);
     const recipes = result2.data.Drupal.nodeRecipes.edges.map(edge => edge.node)
-    const recipe = path.resolve('src/pages/recipe/index.js'),
+    const recipeTem = component: path.resolve('src/pages/recipe/index.js'),
     recipes.forEach(recipedata => {
       createPage({
         path: recipedata.path,
-        component: recipe,
-            context: {
-              title: recipedata.node.title,
-              id: recipedata.node.id,
-              instructions: element.node.recipeInstruction.processed,
-              summary: element.node.summary.processed,
+        component: recipeTem,
+        context: {
+          title: recipedata.title,
+          id: recipedata.id,
+        },
       });
     });
   };

@@ -35,8 +35,7 @@ exports.createPages = async ({ graphql, actions }) => {
         context:{
          ArticleId: articledata.id,
         }
-        },
-      );
+      });
     });
   
   const result2 = await graphql(`
@@ -74,7 +73,6 @@ exports.createPages = async ({ graphql, actions }) => {
         context:{
          RecipeId: recipedata.id,
         }
-        },
-      );
+      });
     });
   };

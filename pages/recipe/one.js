@@ -8,8 +8,8 @@ const RecipePage = ({ pageContext }) => {
   return (
     <Layout>
       <h1>{recipe.title}</h1>
-      <div dangerouslySetInnerHTML={{ __html: filteredRecipe.summary.processed }}></div>
-      <div dangerouslySetInnerHTML={{ __html: filteredRecipe.recipeInstruction.value }}></div>
+      <div dangerouslySetInnerHTML={{ __html: recipe.summary.processed }}></div>
+      <div dangerouslySetInnerHTML={{ __html: recipe.recipeInstruction.value }}></div>
     </Layout>
   );
 };

@@ -29,7 +29,7 @@ exports.createPages = async ({ graphql, actions }) => {
     const articles = result.data.Drupal.nodeArticles.nodes;
     articles.forEach(articledata => {
       createPage({
-        path: articledata.path,
+        path: articleTemone,
         component: articleTemone,
         context: {
           ArticleId: articledata.id,
@@ -70,7 +70,7 @@ exports.createPages = async ({ graphql, actions }) => {
     const recipes = result2.data.Drupal.nodeRecipes.edges.map(edge => edge.node)
     recipes.forEach(recipedata => {
       createPage({
-        path: recipedata.path,
+        path: recipeTemone,
         component: recipeTemone,
         context: {
           RecipeId: recipedata.id,

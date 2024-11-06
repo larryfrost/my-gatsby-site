@@ -7,7 +7,7 @@ exports.createPages = async ({ graphql, actions }) => {
 
   const result = await graphql(`
     {
-      recipeAPI {
+      Drupal {
         nodeRecipes(first: 100) {
           edges {
             node {
@@ -35,8 +35,8 @@ exports.createPages = async ({ graphql, actions }) => {
     return;
   }
 
-  const recipes = result.data.recipeAPI.nodeRecipes.edges;
-  const articles = result.data.recipeAPI.nodeArticles.edges;
+  const recipes = result.data.Drupal.nodeRecipes.edges;
+  const articles = result.data.Drupal.nodeArticles.edges;
 
   recipes.forEach(({ node }) => {
     createPage({

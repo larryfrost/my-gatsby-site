@@ -16,15 +16,17 @@ const ArticlePage = ({ pageContext }) => {
 
 export const query = graphql`
 query Articles {
-  Drupal {
+  recipeAPI {
     nodeArticles (first: 10) {
-      nodes{
-        id
-        title
-        body {
-          processed
+      edges{
+        node{
+          id
+          title
+          body {
+            processed
+          }
         }
-      }
+    }
     }
   }
 }`;

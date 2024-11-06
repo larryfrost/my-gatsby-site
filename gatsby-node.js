@@ -1,4 +1,5 @@
 const path = require(`path`)
+const fs = require('fs');
 
 exports.createPages = async ({ graphql, actions }) => {
   const { createPage } = actions
@@ -73,7 +74,7 @@ exports.createPages = async ({ graphql, actions }) => {
     
     const recipes = result2.data.Drupal.nodeRecipes.edges.map(edge => edge.node)
     recipes.forEach(recipedata => {
-      const recipePath = `/article/${articledata.path}`;
+      const recipePath = `/recipe/${recipedata.path}`;
       createPage({
         path: recipePath,
         component: require.resolve(recipeTemplates[0]),

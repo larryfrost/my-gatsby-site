@@ -19,20 +19,18 @@ exports.createPages = async ({ graphql, actions }) => {
     `);
 
     const articles = result.data.Drupal.nodeArticles.nodes;
+    const article = path.resolve(`src/pages/articles/index.js`)
     articles.forEach(articledata => {
       createPage({
         path: articledata.path,
-        component: path.resolve('src/pages/article/articles/one.js'),
-        component: path.resolve('src/pages/article/articles/two.js'),
-        component: path.resolve('src/pages/article/articles/three.js'),
-        component: path.resolve('src/pages/article/articles/four.js'),
-        component: path.resolve('src/pages/article/articles/five.js'),
-        component: path.resolve('src/pages/article/articles/six.js'),
-        component: path.resolve('src/pages/article/articles/seven.js'),
-        component: path.resolve('src/pages/article/articles/eight.js'),
-        context: {
-          ArticleId: articledata.id,
-        },
+        const articlePath = `${element.node.path}`.slice(3);
+        createPage({
+            path: articlePath,
+            component: article,
+            context: {
+              title: element.node.title,
+              id: element.node.id,
+              body: element.node.body.processed,
       });
     });
 };
@@ -55,22 +53,16 @@ exports.createPages = async ({ graphql, actions }) => {
     }
     `);
     const recipes = result2.data.Drupal.nodeRecipes.edges.map(edge => edge.node)
+    const recipe = path.resolve('src/pages/recipe/index.js'),
     recipes.forEach(recipedata => {
       createPage({
         path: recipedata.path,
-        component: path.resolve('src/pages/recipe/one.js'),
-        component: path.resolve('src/pages/recipe/two.js'),
-        component: path.resolve('src/pages/recipe/three.js'),
-        component: path.resolve('src/pages/recipe/four.js'),
-        component: path.resolve('src/pages/recipe/five.js'),
-        component: path.resolve('src/pages/recipe/six.js'),
-        component: path.resolve('src/pages/recipe/seven.js'),
-        component: path.resolve('src/pages/recipe/eight.js'),
-        component: path.resolve('src/pages/recipe/nine.js'),
-        component: path.resolve('src/pages/recipe/ten.js'),
-        context: {
-          RecipeId: recipedata.id,
-        },
+        component: recipe,
+            context: {
+              title: recipedata.node.title,
+              id: recipedata.node.id,
+              instructions: element.node.recipeInstruction.processed,
+              summary: element.node.summary.processed,
       });
     });
   };

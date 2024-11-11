@@ -1,47 +1,24 @@
-import * as React from 'react';
-import Layout from '../../components/layout';
-import Seo from '../../components/seo';
-import { graphql } from 'gatsby';
+import * as React from 'react'
+import Layout from '../../components/layout'
+import Seo from '../../components/seo'
 
-const RecipePage = ({ pageContext }) => {
-  const { id } = pageContext
-  const recipe = data.Drupal.nodeRecipes.edges.find(({ node }) => node.id === id).node;
-  return (
+const ArticlePage = ({ data }) => {
+  return(
     <Layout>
-      <h1>{recipe.title}</h1>
-      <div dangerouslySetInnerHTML={{ __html: recipe.summary.processed }}></div>
-      <div dangerouslySetInnerHTML={{ __html: recipe.recipeInstruction.value }}></div>
+       <article><h2><a href="/recipe/one">SUUPRDEEP mediterranean quiche</a></h2></article>
+       <article><h2><a href="/recipe/two">Vegan chocolate and nut brownies</a></h2></article>
+       <article><h2><a href="/recipe/three">Super easy vegetarian pasta bake</a></h2></article>
+       <article><h2><a href="/recipe/four">Watercress soup</a></h2></article>
+       <article><h2><a href="/recipe/five">Victoria sponge cake</a></h2></article>
+       <article><h2><a href="/recipe/six">Gluten free pizza</a></h2></article>
+       <article><h2><a href="/recipe/seven">Thai green curry</a></h2></article>
+       <article><h2><a href="/recipe/eight">Crema catalana</a></h2></article>
+       <article><h2><a href="/recipe/nine">Fiery chili sauce</a></h2></article>
+       <article><h2><a href="/recipe/ten">Borscht with pork ribs</a></h2></article>
     </Layout>
-  );
+  );  
 };
 
-export const query = graphql`
-query Recipes {
-  Drupal {
-    nodeRecipes(first: 10) {
-      edges {
-        node {
-          changed
-          id
-          cookingTime
-          created
-          path
-          status
-          preparationTime
-          numberOfServings
-          summary {
-            processed
-          }
-          recipeInstruction{
-            value
-          }
-          title
-        }
-      }
-    }
-  }
-}`;
+export const Head = () => <Seo title="Article Page" />
 
-export const Head = () => <Seo title="Recipe Page" />
-
-export default RecipePage;
+export default ArticlePage;

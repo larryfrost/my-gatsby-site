@@ -23,7 +23,7 @@ jobs:
         run: npm install -g gatsby-cli
 
       - name: Build
-        run: gatsby build --prefix-paths
+        run: gatsby build --prefix-paths, tar -czf build.tar.gz -C public .
           
       - name: Verify build
         run: ls -la public
@@ -34,7 +34,7 @@ jobs:
           host: ${{ secrets.IP }}         
           username: ${{ secrets.USER }}     
           key: ${{ secrets.PRIVATE_KEY }} 
-          source: "public/"
+          source: "build.tar.gz"
           target: "site/newBranch"
           strip_components: 1
 
@@ -47,4 +47,7 @@ jobs:
           script: |
             rm -rf site/mainBranch
             mv site/newBranch site/mainBranch
+            mkdir site/newBranch
+            tar -xzf site/mainBranch/build.tar.gz -C site/mainBranch
+            rm site/mainBranch/build.tar.gz
             mkdir site/newBranch

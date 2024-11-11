@@ -49,7 +49,7 @@ exports.createPages = async ({ graphql, actions }) => {
   articles.forEach(({ node }) => {
     createPage({
       path: node.path,
-      component: path.resolve('src/pages/article/index.js');,
+      component: path.resolve('src/pages/article/index.js'),
       context: {
         id: node.id,
       },

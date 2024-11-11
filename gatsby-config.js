@@ -21,7 +21,7 @@ module.exports = {
       // This is field under which it's accessible
       fieldName: "Drupal",
       // Url to query from
-        url: "https://csc496f24demo.tldr.dev/graphql",
+        url: `https://csc496f24demo.tldr.dev/graphql`,
       },
     },
   ],

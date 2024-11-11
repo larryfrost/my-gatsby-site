@@ -2,7 +2,9 @@ const path = require('path');
 
 exports.createPages = async ({ graphql, actions }) => {
   const { createPage } = actions;
-
+  const recipeTemplate = path.resolve('src/pages/recipe/index.js');
+  const articleTemplate = path.resolve('src/pages/article/index.js');
+  
   const result = await graphql(`
     {
       Drupal {
@@ -39,7 +41,7 @@ exports.createPages = async ({ graphql, actions }) => {
   recipes.forEach(({ node }) => {
     createPage({
       path: `/en/recipes/${node.title.toLowerCase().replace(/\s+/g, '-')}`,
-      component: path.resolve('src/pages/recipe/index.js'),
+      component: recipeTemplate,
       context: {
         id: node.id,
       },
@@ -49,7 +51,7 @@ exports.createPages = async ({ graphql, actions }) => {
   articles.forEach(({ node }) => {
     createPage({
       path: `/en/articles/${node.title.toLowerCase().replace(/\s+/g, '-')}`,
-      component: path.resolve('src/pages/article/index.js'),
+      component: articleTemplate,
       context: {
         id: node.id,
       },

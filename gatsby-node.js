@@ -2,8 +2,6 @@ const path = require('path');
 
 exports.createPages = async ({ graphql, actions }) => {
   const { createPage } = actions;
-  const recipeTemplate = path.resolve('src/pages/recipe/index.js');
-  const articleTemplate = path.resolve('src/pages/article/index.js');
 
   const result = await graphql(`
     {
@@ -41,7 +39,7 @@ exports.createPages = async ({ graphql, actions }) => {
   recipes.forEach(({ node }) => {
     createPage({
       path: node.path,
-      component: recipeTemplate,
+      component: path.resolve('src/pages/recipe/index.js'),
       context: {
         id: node.id,
       },
@@ -51,7 +49,7 @@ exports.createPages = async ({ graphql, actions }) => {
   articles.forEach(({ node }) => {
     createPage({
       path: node.path,
-      component: articleTemplate,
+      component: path.resolve('src/pages/article/index.js');,
       context: {
         id: node.id,
       },

@@ -36,7 +36,6 @@ jobs:
           key: ${{ secrets.PRIVATE_KEY }} 
           source: "public/*"
           target: "site/*"
-          strip_components: 1
 
       - name: Finalize Deployment
         uses: appleboy/ssh-action@master

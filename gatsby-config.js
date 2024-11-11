@@ -13,7 +13,7 @@ module.exports = {
       },
     },
     "gatsby-plugin-mdx",
-    {
+      {
       resolve: "gatsby-source-graphql",
       options: {
         // This type will contain remote schema Query type

@@ -40,7 +40,7 @@ exports.createPages = async ({ graphql, actions }) => {
 
   recipes.forEach(({ node }) => {
     createPage({
-      path: `/en/recipes/${node.title.toLowerCase().replace(/\s+/g, '-')}`,
+      path: `/en/recipes/${node.path}`,
       component: recipeTemplate,
       context: {
         id: node.id,
@@ -50,7 +50,7 @@ exports.createPages = async ({ graphql, actions }) => {
 
   articles.forEach(({ node }) => {
     createPage({
-      path: `/en/articles/${node.title.toLowerCase().replace(/\s+/g, '-')}`,
+      path: `/en/articles/${node.path}`,
       component: articleTemplate,
       context: {
         id: node.id,

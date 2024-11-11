@@ -33,7 +33,7 @@ jobs:
         with:
           host: ${{ secrets.HOST }}         
           username: ${{ secrets.USER }}     
-          key: ${{ secrets.PRIVATEKEY }} 
+          key: ${{ secrets.PRIVATE_KEY }} 
           source: "public/"
           target: "site/newBranch"
           strip_components: 1
@@ -43,7 +43,7 @@ jobs:
         with:
           host: ${{ secrets.HOST }}
           username: ${{ secrets.USER }}
-          key: ${{ secrets.PRIVATEKEY }}
+          key: ${{ secrets.PRIVATE_KEY }}
           script: |
             rm -rf site/mainBranch
             mv site/newBranch site/mainBranch

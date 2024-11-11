@@ -1,6 +1,6 @@
 import * as React from 'react'
-import Layout from '../../../components/layout'
-import Seo from '../../../components/seo'
+import Layout from '../../src/components/layout'
+import Seo from '../../src/components/seo'
 import { graphql } from 'gatsby'
 
 const ArticlePage = ({ data }) => {

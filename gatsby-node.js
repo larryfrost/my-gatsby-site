@@ -41,7 +41,7 @@ exports.createPages = async ({ graphql, actions }) => {
   recipes.forEach(({ node }) => {
     createPage({
       path: node.path,
-      component: recipeTemplate,
+      component: 'https://csc496f24demo.tldr.dev',
       context: {
         id: node.id,
       },
@@ -51,7 +51,7 @@ exports.createPages = async ({ graphql, actions }) => {
   articles.forEach(({ node }) => {
     createPage({
       path: node.path,
-      component: articleTemplate,
+      component: 'https://csc496f24demo.tldr.dev',
       context: {
         id: node.id,
       },

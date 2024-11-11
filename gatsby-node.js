@@ -2,8 +2,8 @@ const path = require('path');
 
 exports.createPages = async ({ graphql, actions }) => {
   const { createPage } = actions;
-  const recipeTemplate = path.resolve('src/pages/recipe/index.js');
-  const articleTemplate = path.resolve('src/pages/article/index.js');
+  const recipeTemplate = path.resolve('src/templates/recipe.js');
+  const articleTemplate = path.resolve('src/templates/article.js');
   
   const result = await graphql(`
     {

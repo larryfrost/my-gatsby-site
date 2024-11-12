@@ -36,4 +36,7 @@ jobs:
           ssh-keyscan -H "${{ secrets.HOST }}" > ~/.ssh/known_hosts
           
       - name: SFTP upload
-        run: sftp -i ~/.ssh/deploy_key ${{ secrets.USER }}@${{ secrets.HOST }} <<< $'cd site \n put -r public/*'
+        run: |
+            echo -e "cd site\nput -r public/*" > sftp_commands.txt
+            sftp -i ~/.ssh/deploy_key -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null ${{ secrets.USER }}@${{ secrets.HOST }} < sftp_commands.txt
+            rm sftp_commands.txt

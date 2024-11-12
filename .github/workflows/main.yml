@@ -35,7 +35,6 @@ jobs:
           username: ${{ secrets.USER }}
           key: ${{ secrets.PRIVATE_KEY }}
           script: |
-            cat ~/.ssh/id_rsa.pub | ssh secrets.USER@secrets.HOST 'cat >> ~/.ssh/authorized_keys'
             rm -rf site/mainBranch
             mkdir -p site/newBranch
 
@@ -55,6 +54,5 @@ jobs:
           username: ${{ secrets.USER }}
           key: ${{ secrets.PRIVATE_KEY }}
           script: |
-            cat ~/.ssh/id_rsa.pub | ssh secrets.USER@secrets.HOST 'cat >> ~/.ssh/authorized_keys'
             mv site/newBranch/* site/mainBranch/
             rm -rf site/newBranch

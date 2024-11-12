@@ -29,11 +29,21 @@ jobs:
         run: ls -la public
 
       - name: Copy files via SCP
-        env:
-            PRIVATE_KEY: ${{ secrets.PRIVATE_KEY  }}
-            HOSTNAME : ${{ secrets.HOST  }}
-            USER_NAME : ${{ secrets.USER  }}
-            
-        run: |
-          echo "$PRIVATE_KEY" > private_key && chmod 600 private_key
-          ssh -o StrictHostKeyChecking=no -i private_key ${secrets.USER}@${secrets.HOST} '
+        uses: appleboy/scp-action@master
+        with:
+          host: ${{ secrets.IP }}         
+          username: ${{ secrets.USER }}     
+          key: ${{ secrets.PRIVATE_KEY }}
+          source: "public/"
+          target: "site/newBranch"
+
+      - name: Finalize Deployment
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.IP }}
+          username: ${{ secrets.USER }}
+          key: ${{ secrets.PRIVATE_KEY }}
+          script: |
+            rm -rf site/mainBranch
+            mv site/newBranch site/mainBranch
+            mkdir site/newBranch

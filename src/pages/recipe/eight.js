@@ -2,6 +2,7 @@ import * as React from 'react';
 import Layout from '../../components/layout';
 import Seo from '../../components/seo';
 import { graphql } from 'gatsby';
+import { StaticImage } from 'gatsby-plugin-image'
 
 const RecipePage = ({ data }) => {
   const recipes = data.Drupal.nodeRecipes.edges.map(edge => edge.node);
@@ -10,6 +11,12 @@ const RecipePage = ({ data }) => {
   return (
     <Layout>
       <h1>{filteredRecipe.title}</h1>
+      <div> 
+      <StaticImage
+        alt="crema-catalana-umami"
+        src="http://csc496f24demo.tldr.dev/sites/default/files/crema-catalana-umami.jpg"
+      />
+      </div>
       <div dangerouslySetInnerHTML={{ __html: filteredRecipe.summary.processed }}></div>
       <div dangerouslySetInnerHTML={{ __html: filteredRecipe.recipeInstruction.value }}></div>
     </Layout>

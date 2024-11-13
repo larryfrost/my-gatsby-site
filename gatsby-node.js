@@ -44,7 +44,6 @@ exports.createPages = async ({ graphql, actions }) => {
       component: recipeTemplate,
       context: {
         id: node.id,
-        image: node.mediaImage.mediaImage.url,
       },
     });
   });

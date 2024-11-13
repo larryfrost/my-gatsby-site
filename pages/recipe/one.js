@@ -9,11 +9,7 @@ const RecipePage = ({ data }) => {
 
   return (
     <Layout>
-      <div> 
-        <img src = {data.image} alt={data.title}/>
-      </div>
       <h1>{filteredRecipe.title}</h1>
-      <div dangerouslySetInnerHTML={{ __html: filteredRecipe.mediaImage.mediaImage.url }}></div>
       <div dangerouslySetInnerHTML={{ __html: filteredRecipe.summary.processed }}></div>
       <div dangerouslySetInnerHTML={{ __html: filteredRecipe.recipeInstruction.value }}></div>
     </Layout>
@@ -39,11 +35,6 @@ query Recipes {
           }
           recipeInstruction{
             value
-          }
-          mediaImage{
-              mediaImage{
-                    url
-              }
           }
           title
         }

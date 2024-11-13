@@ -36,6 +36,11 @@ query Recipes {
           recipeInstruction{
             value
           }
+          mediaImage{
+              mediaImage{
+                    url
+              }
+          }
           title
         }
       }

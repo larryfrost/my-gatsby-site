@@ -10,7 +10,7 @@ const RecipePage = ({ data }) => {
   return (
     <Layout>
       <div> 
-        <img src = {pageContext.image} alt={pageContext.title}/>>
+        <img src = {pageContext.image} alt={pageContext.title}/>
       </div>
       <h1>{filteredRecipe.title}</h1>
       <div dangerouslySetInnerHTML={{ __html: filteredRecipe.summary.processed }}></div>

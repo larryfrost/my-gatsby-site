@@ -1,5 +1,5 @@
 ## My Gatby Site
-This is a Gatby site I created using Docker,Gatsby and Node.js. The site is a blog site with three post about a pet rock, the site also pulls data from a recipe website and returns with the specified sections for each article and recipe.
+This is a Gatby site I created using Docker,Gatsby and Node.js. The site is a blog site with three posts about a pet rock, the site also pulls data from a recipe website and returns with the specified sections for each article and recipe.
 
 **Clone the repository**:
    ```bash

@@ -1,7 +1,6 @@
 import React from "react"
 import { render, screen } from "@testing-library/react"
 
-// Data
 const mockPageContext = {
     article: {
       title: "Test Article",
@@ -11,7 +10,6 @@ const mockPageContext = {
     },
   };
 
-// You have to write data-testid
 const ArticleCorrect = ({pageContext}) => {
   const { article } = pageContext;
 

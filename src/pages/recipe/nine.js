@@ -10,10 +10,13 @@ const RecipePage = ({ data }) => {
 
   return (
     <Layout>
-    <StaticImage
+    <div> 
+      <StaticImage
         alt="chili-sauce-umami"
         src="http://csc496f24demo.tldr.dev/sites/default/files/chili-sauce-umami.jpg"
       />
+      </div>
+    
       <h1>{filteredRecipe.title}</h1>
       <div dangerouslySetInnerHTML={{ __html: filteredRecipe.summary.processed }}></div>
       <div dangerouslySetInnerHTML={{ __html: filteredRecipe.recipeInstruction.value }}></div>

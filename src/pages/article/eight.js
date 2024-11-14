@@ -13,7 +13,7 @@ const ArticlePage = ({ data }) => {
       <div> 
       <StaticImage
         alt="oatmeal-fruit-syrup-topping"
-        src="http://csc496f24demo.tldr.dev/sites/default/files/oatmeal-fruit-syrup-topping.jpg"
+        src="http://csc496f24demo.tldr.dev/sites/default/files/heritage-carrots.jpg"
       />
       </div>
       <h1>{filteredArticle.title}</h1>

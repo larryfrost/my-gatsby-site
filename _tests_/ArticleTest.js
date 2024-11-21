@@ -14,6 +14,7 @@ const ArticleCorrect = ({pageContext}) => {
   const { article } = pageContext;
 
   return (
+        <div dangerouslySetInnerHTML={{ __html: article.title}} data-testid="article-title"/>
         <div dangerouslySetInnerHTML={{ __html: article.body.value}} data-testid="article-body"/>
   );
 };
@@ -21,6 +22,6 @@ const ArticleCorrect = ({pageContext}) => {
 test("Displays the correct Collection Information", () => {
     render(<ArticleCorrect pageContext={mockPageContext} />);
 
-    expect(screen.getByTestId("article-title")).toHaveTextContent("Test Article");
-    expect(screen.getByTestId("article-body")).toHaveTextContent("You know I deserve it");
+    expect(screen.getByTestID("article-title")).toHaveTextContent("Test Article");
+    expect(screen.getByTestId("article-body")).toHaveTextContent("This is a test article");
   });
